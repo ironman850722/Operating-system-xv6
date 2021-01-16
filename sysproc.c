@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+int syscounter = -1;
 
 int
 sys_fork(void)
@@ -88,4 +89,16 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+int
+getsyscallinfo(void)
+{
+  if (syscounter == -1){
+    return syscounter;
+    }
+  else{
+    return syscounter + 1;
+    }
+  
 }
